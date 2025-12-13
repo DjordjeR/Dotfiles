@@ -1,5 +1,9 @@
 -- Basic Neovim options
 
+-- Set leader key 
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
 -- Set line numbers to absolute and relative
 vim.wo.number = true
 vim.wo.relativenumber = true

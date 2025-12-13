@@ -8,7 +8,7 @@ local config = wezterm.config_builder()
 -- Appearance
 config.font = wezterm.font("JetBrainsMono Nerd Font")
 config.font_size = 12
-config.window_background_opacity = 0.95
+config.window_background_opacity = 1 
 config.color_scheme = "nightfox"
 
 -- OS specific startup shell

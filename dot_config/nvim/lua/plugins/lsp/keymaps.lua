@@ -1,44 +1,29 @@
--- File: lua/lsp/keymaps.lua
-local M = {}
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(args)
+    local buf = args.buf
+    local opts = { buffer = buf }
 
-function M.on_attach(_, buffer)
-  local map = function(mode, lhs, rhs, desc)
-    vim.keymap.set(mode, lhs, rhs, { buffer = buffer, silent = true, desc = desc })
-  end
+    -- Snacks navigation
+    vim.keymap.set("n", "gd", function() Snacks.picker.lsp_definitions() end, opts)
+    vim.keymap.set("n", "gr", function() Snacks.picker.lsp_references() end, opts)
+    vim.keymap.set("n", "gI", function() Snacks.picker.lsp_implementations() end, opts)
+    vim.keymap.set("n", "gy", function() Snacks.picker.lsp_type_definitions() end, opts)
+    vim.keymap.set("n", "<leader>ss", function() Snacks.picker.lsp_symbols() end, opts)
 
-  -- LSP basic navigation
-  map("n", "gd", function()
-    vim.lsp.buf.definition()
-    vim.cmd("normal! zz")
-  end, "Goto Definition")
-  map("n", "gD", vim.lsp.buf.declaration, "Goto Declaration")
-  map("n", "gI", vim.lsp.buf.implementation, "Goto Implementation")
-  map("n", "gy", vim.lsp.buf.type_definition, "Goto Type Definition")
-  map("n", "gr", vim.lsp.buf.references, "References")
+    -- Actions
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+    vim.keymap.set("n", "<leader>cr", function() Snacks.rename.rename_file() end, opts)
+    vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
 
-  -- Info and documentation
-  map("n", "K", vim.lsp.buf.hover, "Hover Info")
-  map("n", "gK", vim.lsp.buf.signature_help, "Signature Help")
-  map("i", "<C-k>", vim.lsp.buf.signature_help, "Signature Help")
+    -- Manual format
+    vim.keymap.set("n", "<leader>cf", function()
+      require("conform").format({ async = true })
+    end, opts)
 
-  -- Code actions and renaming
-  map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, "Code Action")
-  map("n", "<leader>cr", vim.lsp.buf.rename, "Rename Symbol")
-
-  -- Formatting
-  map("n", "<leader>cf", function()
-    vim.lsp.buf.format({ async = true })
-  end, "Format File")
-
-  -- Diagnostics
-  map("n", "[d", vim.diagnostic.goto_prev, "Previous Diagnostic")
-  map("n", "]d", vim.diagnostic.goto_next, "Next Diagnostic")
-  map("n", "<leader>cd", vim.diagnostic.open_float, "Line Diagnostics")
-
-  -- CodeLens (optional; only works if LSP supports it)
-  map("n", "<leader>cc", vim.lsp.codelens.run, "Run CodeLens")
-  map("n", "<leader>cC", vim.lsp.codelens.refresh, "Refresh CodeLens")
-end
-
-return M
-
+    -- Native inlay hints (0.11)
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    if client and client.server_capabilities.inlayHintProvider then
+      vim.lsp.inlay_hint.enable(true, { bufnr = buf })
+    end
+  end,
+})

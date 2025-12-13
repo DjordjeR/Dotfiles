@@ -12,6 +12,7 @@ return {
 				python = { "ruff_format" },
 				c = { "clang-format" },
 				cpp = { "clang-format" },
+				rust = { "rustfmt" },
 			},
 		},
 	},

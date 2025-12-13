@@ -3,10 +3,10 @@ return {
 	opts = {
 		ensure_installed = {
 			"clangd", -- LSP
-			"ruff", -- Linter
 			"clang-format", -- Formatter
-			"stylua", -- Formatter
 			"pyright", -- LSP
+			"ruff", -- Formatter
+			"stylua", -- Formatter
 		},
 	},
 	config = function(_, opts)

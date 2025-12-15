@@ -1,0 +1,10 @@
+# Disable all default modules
+format = "(($python)) $directory$git_branch$git_status\n🐧 $character"
+
+[directory]
+truncation_length = 3
+truncate_to_repo = true
+
+[python]
+format = '(\($virtualenv\))'
+pyenv_version_name = false

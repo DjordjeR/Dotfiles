@@ -1,6 +1,6 @@
 -- Basic Neovim options
 
--- Set leader key 
+-- Set leader key
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
@@ -20,8 +20,10 @@ vim.o.tabstop = 4
 vim.o.wrap = false
 vim.o.showmatch = true
 vim.o.clipboard = "unnamedplus"
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 
--- Enable termguicolors 
+-- Enable termguicolors
 vim.o.termguicolors = true
 
 -- Fixes my problem with zz screen centering
@@ -29,4 +31,3 @@ vim.o.lazyredraw = true
 
 -- Add line at 80 char
 vim.opt.colorcolumn = "80"
-

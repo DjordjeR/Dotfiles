@@ -23,6 +23,12 @@ vim.o.clipboard = "unnamedplus"
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+if vim.g.has("wsl") == 1 then
+	vim.opt.clipboard = ""
+	vim.g.clipboard = nil
+	vim.g.loaded_clipboard_provider = 1
+end
+
 -- Enable termguicolors
 vim.o.termguicolors = true
 

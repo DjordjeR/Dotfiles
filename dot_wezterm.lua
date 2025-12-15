@@ -15,6 +15,7 @@ config.hide_tab_bar_if_only_one_tab = true
 if is_windows then
 	config.default_prog = { "pwsh.exe", "-NoLogo" }
 	config.window_background_opacity = 1
+	config.font_size = 11
 else
 	config.default_prog = { "/usr/bin/zsh", "-l" }
 	config.window_background_opacity = 0.9

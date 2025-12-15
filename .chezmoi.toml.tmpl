@@ -1,9 +1,15 @@
-{{- $osID := .chezmoi.os -}}
-{{- if hasKey .chezmoi.osRelease "id" -}}
-    {{- $osID = .chezmoi.osRelease.id -}}
+{{- $os_id := .chezmoi.os -}}
+{{- if and (eq .chezmoi.os "linux") (.chezmoi.kernel.osrelease | lower | contains "microsoft") -}}
+    {{- $os_id = "wsl" -}}
 {{- end -}}
-{{- $is_wsl := or (eq $osID "windows") (and (eq $osID "linux") (.chezmoi.kernel.osrelease | lower | contains "microsoft")) -}}
+
+{{- $has_desktop := false -}}
+
+{{- if eq $os_id "linux" -}}
+    {{- $has_desktop = promptBool "Install Desktop Environment (Sway/Waybar)?" true -}}
+{{- end -}}
 
 [data]
-email = {{ promptString "Email" "me@example.com" | quote }}
-has_desktop = {{ promptBool "Install Desktop Environment (Sway/Waybar)?" (not $is_wsl) }}
+    email = {{ promptString "Email" "me@example.com" | quote }}
+    os_id = {{ $os_id | quote }}
+    has_desktop = {{ $has_desktop }}

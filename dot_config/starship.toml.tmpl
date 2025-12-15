@@ -1,5 +1,10 @@
+{{- $os_icon := "🐧" -}}
+{{- if eq .os_id "windows" -}}
+    {{- $os_icon = "🪟" -}}
+{{- end -}}
+
 # Disable all default modules
-format = "(($python)) $directory$git_branch$git_status\n🐧 $character"
+format = "(($python)) $directory$git_branch$git_status\n{{ $os_icon }} $character"
 
 [directory]
 truncation_length = 3

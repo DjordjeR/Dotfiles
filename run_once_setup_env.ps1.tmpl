@@ -1,0 +1,11 @@
+{{ if eq .os_id "windows" -}}
+$desiredPath = "$env:USERPROFILE\.config"
+$currentPath = [System.Environment]::GetEnvironmentVariable('XDG_CONFIG_HOME', 'User')
+
+if ($currentPath -ne $desiredPath) {
+    Write-Host "Setting XDG_CONFIG_HOME to $desiredPath..."
+    [System.Environment]::SetEnvironmentVariable('XDG_CONFIG_HOME', $desiredPath, 'User')
+    
+    Write-Warning "You must RESTART your terminal (or log out/in) for this change to take effect."
+}
+{{ end -}}

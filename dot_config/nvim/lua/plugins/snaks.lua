@@ -20,6 +20,9 @@ return {
 			explorer = {
 				replace_netrw = true,
 			},
+			layout = {
+				preset = "vscode",
+			},
 		},
 
 		-- 3. Explorer

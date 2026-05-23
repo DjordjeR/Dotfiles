@@ -11,8 +11,6 @@ By leveraging [Chezmoi](https://www.chezmoi.io/quick-start/), configuration file
 
 ## Getting Started
 
-Use Bombadil to install and manage your dotfiles with minimal effort:
-
 ```bash
 # Get the dotfiles from this repository 
 chezmoi init --apply djordjer

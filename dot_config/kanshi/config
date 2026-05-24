@@ -2,12 +2,24 @@ profile laptop_only {
     output eDP-1 enable scale 1.5
 }
 
-profile docking_home {
+profile docking_home_1 {
     output eDP-1 disable
     output "Dell Inc. DELL U2414H 292K469N1CWL" {
         position 1920,0
     }
     output "Dell Inc. DELL U2414H 9TG464BO15EL" {
         position 0,0
+    }
+}
+
+profile docking_home_2 {
+    output eDP-1 disable
+    output "Dell Inc. DELL U2414H 9TG464BO15EL" {
+        mode 1920x1080@60Hz
+        position 0,0
+    }
+    output "Dell Inc. DELL S2725DSM 48XK0C4" {
+        mode 2560x1440@143.973Hz
+        position 1920,0
     }
 }

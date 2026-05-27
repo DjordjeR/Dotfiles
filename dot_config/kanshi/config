@@ -14,12 +14,12 @@ profile docking_home_1 {
 
 profile docking_home_2 {
     output eDP-1 disable
-    output "Dell Inc. DELL U2414H 9TG464BO15EL" {
-        mode 1920x1080@60Hz
+    output "Dell Inc. DELL S2725DSM 58XK0C4" {
+        mode 2560x1440
         position 0,0
     }
     output "Dell Inc. DELL S2725DSM 48XK0C4" {
         mode 2560x1440@143.973Hz
-        position 1920,0
+        position 2560,0
     }
 }
